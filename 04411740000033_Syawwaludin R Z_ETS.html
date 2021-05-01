@@ -1,0 +1,138 @@
+<!-- HTML -->
+<div id="chartdiv"></div>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>04411740000033 - Syawwaludin R Z</title>
+    <!-- Styles -->
+    <style>
+      #chartdiv {
+        width: 100%;
+        height: 500px;
+      }
+    </style>
+
+    <!-- Resources -->
+    <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+
+    <!-- Chart code -->
+    <script>
+      am4core.ready(function () {
+        // Themes begin
+        am4core.useTheme(am4themes_animated);
+        // Themes end
+
+        var chart = am4core.create("chartdiv", am4charts.SlicedChart);
+
+        chart.hiddenState.properties.opacity = 0; // this makes initial fade in effect
+
+        chart.data = [
+          {
+            Country: "Indonesia",
+            Cases: 1626812,
+            Death: 44172,
+            Vaccinated: 6341931,
+          },
+          {
+            Country: "Philippines",
+            Cases: 971049,
+            Death: 16370,
+            Vaccinated: 214792,
+          },
+          {
+            Country: "Malaysia",
+            Cases: 384588,
+            Death: 1407,
+            Vaccinated: 462335,
+          },
+          {
+            Country: "Myanmar",
+            Cases: 142674,
+            Death: 3206,
+            Vaccinated: 40000,
+          },
+          {
+            Country: "Singapore",
+            Cases: 60904,
+            Death: 30,
+            Vaccinated: 849764,
+          },
+          {
+            Country: "Thailand",
+            Cases: 48113,
+            Death: 117,
+            Vaccinated: 94385,
+          },
+          {
+            Country: "Cambodia",
+            Cases: 8193,
+            Death: 59,
+            Vaccinated: 494930,
+          },
+
+          {
+            Country: "Vietnam",
+            Cases: 2816,
+            Death: 35,
+            Vaccinated: 0,
+          },
+          {
+            Country: "Brunei",
+            Cases: 223,
+            Death: 3,
+            Vaccinated: 0,
+          },
+          {
+            Country: "Laos",
+            Cases: 94,
+            Death: 0,
+            Vaccinated: 30921,
+          },
+          {
+            Country: "Timor Leste",
+            Cases: 1,
+            Death: 2,
+            Vaccinated: 0,
+          },
+        ];
+
+        var series = chart.series.push(new am4charts.FunnelSeries());
+        series.colors.step = 2;
+        series.dataFields.value = "Cases";
+        series.dataFields.category = "Country";
+        series.alignLabels = true;
+
+        series.labelsContainer.paddingLeft = 15;
+        series.labelsContainer.width = 200;
+
+        series.colors.list = [
+          am4core.color("#845EC2"),
+          am4core.color("#D65DB1"),
+          am4core.color("#FF6F91"),
+          am4core.color("#FF9671"),
+          am4core.color("#FFC75F"),
+          am4core.color("#F9F871"),
+        ];
+
+        //series.orientation = "horizontal";
+        //series.bottomRatio = 1;
+
+        chart.legend = new am4charts.Legend();
+        chart.legend.position = "left";
+        chart.legend.valign = "bottom";
+        chart.legend.margin(5, 5, 20, 5);
+
+        var title = chart.titles.create();
+        title.text = "COVID-19 Cases on Southeast Asia";
+        title.fontSize = 25;
+        title.marginBottom = 30;
+      }); // end am4core.ready()
+    </script>
+  </head>
+  <body>
+    <div id="chartdiv"></div>
+  </body>
+</html>
