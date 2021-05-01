@@ -25,108 +25,164 @@
         am4core.useTheme(am4themes_animated);
         // Themes end
 
-        var chart = am4core.create("chartdiv", am4charts.SlicedChart);
-
-        chart.hiddenState.properties.opacity = 0; // this makes initial fade in effect
+        var chart = am4core.create("chartdiv", am4charts.XYChart);
 
         chart.data = [
           {
-            Country: "Indonesia",
-            Cases: 1626812,
-            Death: 44172,
-            Vaccinated: 6341931,
+            Tahun: "2000",
+            Jepang: 18570,
+            "Korea Selatan": 5841,
           },
           {
-            Country: "Philippines",
-            Cases: 971049,
-            Death: 16370,
-            Vaccinated: 214792,
+            Tahun: "2001",
+            Jepang: 18279,
+            "Korea Selatan": 3626,
           },
           {
-            Country: "Malaysia",
-            Cases: 384588,
-            Death: 1407,
-            Vaccinated: 462335,
+            Tahun: "2002",
+            Jepang: 18611,
+            "Korea Selatan": 5188,
           },
           {
-            Country: "Myanmar",
-            Cases: 142674,
-            Death: 3206,
-            Vaccinated: 40000,
+            Tahun: "2003",
+            Jepang: "18 913.2",
+            "Korea Selatan": 5125,
           },
           {
-            Country: "Singapore",
-            Cases: 60904,
-            Death: 30,
-            Vaccinated: 849764,
+            Tahun: "2004",
+            Jepang: 17515,
+            "Korea Selatan": 5192,
           },
           {
-            Country: "Thailand",
-            Cases: 48113,
-            Death: 117,
-            Vaccinated: 94385,
+            Tahun: "2005",
+            Jepang: 15151,
+            "Korea Selatan": 5527,
           },
           {
-            Country: "Cambodia",
-            Cases: 8193,
-            Death: 59,
-            Vaccinated: 494930,
-          },
-
-          {
-            Country: "Vietnam",
-            Cases: 2816,
-            Death: 35,
-            Vaccinated: 0,
+            Tahun: "2006",
+            Jepang: 14314,
+            "Korea Selatan": 5245,
           },
           {
-            Country: "Brunei",
-            Cases: 223,
-            Death: 3,
-            Vaccinated: 0,
+            Tahun: "2007",
+            Jepang: 13907,
+            "Korea Selatan": 4035,
           },
           {
-            Country: "Laos",
-            Cases: 94,
-            Death: 0,
-            Vaccinated: 30921,
+            Tahun: "2008",
+            Jepang: 14392,
+            "Korea Selatan": 3373,
           },
           {
-            Country: "Timor Leste",
-            Cases: 1,
-            Death: 2,
-            Vaccinated: 0,
+            Tahun: "2009",
+            Jepang: 13058,
+            "Korea Selatan": 3136,
+          },
+          {
+            Tahun: "2010",
+            Jepang: 13133,
+            "Korea Selatan": 5652,
+          },
+          {
+            Tahun: "2011",
+            Jepang: 12826,
+            "Korea Selatan": 9384,
+          },
+          {
+            Tahun: "2012",
+            Jepang: 7174,
+            "Korea Selatan": 8515,
+          },
+          {
+            Tahun: "2013",
+            Jepang: 7355,
+            "Korea Selatan": 6132,
+          },
+          {
+            Tahun: "2014",
+            Jepang: 5672,
+            "Korea Selatan": 5466,
+          },
+          {
+            Tahun: "2015",
+            Jepang: 6337,
+            "Korea Selatan": 3938,
+          },
+          {
+            Tahun: "2016",
+            Jepang: 6548,
+            "Korea Selatan": 4439,
+          },
+          {
+            Tahun: "2017",
+            Jepang: 6606,
+            "Korea Selatan": 4041,
+          },
+          {
+            Tahun: "2018",
+            Jepang: 5239,
+            "Korea Selatan": 3459,
+          },
+          {
+            Tahun: "2019",
+            Jepang: 4147,
+            "Korea Selatan": 2481,
           },
         ];
 
-        var series = chart.series.push(new am4charts.FunnelSeries());
-        series.colors.step = 2;
-        series.dataFields.value = "Cases";
-        series.dataFields.category = "Country";
-        series.alignLabels = true;
+        chart.dateFormatter.inputDateFormat = "yyyy";
+        var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+        dateAxis.renderer.minGridDistance = 60;
+        dateAxis.startLocation = 0.5;
+        dateAxis.endLocation = 0.5;
+        dateAxis.baseInterval = {
+          timeUnit: "year",
+          count: 1,
+        };
 
-        series.labelsContainer.paddingLeft = 15;
-        series.labelsContainer.width = 200;
+        var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+        valueAxis.tooltip.disabled = true;
 
-        series.colors.list = [
-          am4core.color("#845EC2"),
-          am4core.color("#D65DB1"),
-          am4core.color("#FF6F91"),
-          am4core.color("#FF9671"),
-          am4core.color("#FFC75F"),
-          am4core.color("#F9F871"),
-        ];
+        var series = chart.series.push(new am4charts.LineSeries());
+        series.dataFields.dateX = "Tahun";
+        series.name = "Jepang";
+        series.dataFields.valueY = "Jepang";
+        series.tooltipText = "[#000]{valueY.value}[/]";
+        series.tooltip.background.fill = am4core.color("#FFF");
+        series.tooltip.getStrokeFromObject = true;
+        series.tooltip.background.strokeWidth = 3;
+        series.tooltip.getFillFromObject = false;
+        series.fillOpacity = 0.6;
+        series.strokeWidth = 2;
+        series.stacked = true;
+        series.fill = am4core.color("#845EC2");
 
-        //series.orientation = "horizontal";
-        //series.bottomRatio = 1;
+        var series2 = chart.series.push(new am4charts.LineSeries());
+        series2.name = "Korea Selatan";
+        series2.dataFields.dateX = "Tahun";
+        series2.dataFields.valueY = "Korea Selatan";
+        series2.tooltipText = "[#000]{valueY.value}[/]";
+        series2.tooltip.background.fill = am4core.color("#FFF");
+        series2.tooltip.getFillFromObject = false;
+        series2.tooltip.getStrokeFromObject = true;
+        series2.tooltip.background.strokeWidth = 3;
+        series2.sequencedInterpolation = true;
+        series2.fillOpacity = 0.6;
+        series2.stacked = true;
+        series2.strokeWidth = 2;
+        series2.fill = am4core.color("#FF9671");
 
+        chart.cursor = new am4charts.XYCursor();
+        chart.cursor.xAxis = dateAxis;
+        chart.scrollbarX = new am4core.Scrollbar();
+
+        // Add a legend
         chart.legend = new am4charts.Legend();
-        chart.legend.position = "left";
-        chart.legend.valign = "bottom";
-        chart.legend.margin(5, 5, 20, 5);
+        chart.legend.position = "top";
 
         var title = chart.titles.create();
-        title.text = "COVID-19 Cases on Southeast Asia";
+        title.text =
+          "Expor gas Korea Selatan & Jepang periode 2000 - 2019 (Ton)";
         title.fontSize = 25;
         title.marginBottom = 30;
       }); // end am4core.ready()
