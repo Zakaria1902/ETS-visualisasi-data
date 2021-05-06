@@ -32,101 +32,121 @@
             Tahun: "2000",
             Jepang: 18570,
             "Korea Selatan": 5841,
+            Tiongkok: 2644,
           },
           {
             Tahun: "2001",
             Jepang: 18279,
             "Korea Selatan": 3626,
+            Tiongkok: 2900,
           },
           {
             Tahun: "2002",
             Jepang: 18611,
             "Korea Selatan": 5188,
+            Tiongkok: 551,
           },
           {
             Tahun: "2003",
-            Jepang: "18 913.2",
+            Jepang: "18 913",
             "Korea Selatan": 5125,
+            Tiongkok: 458,
           },
           {
             Tahun: "2004",
             Jepang: 17515,
             "Korea Selatan": 5192,
+            Tiongkok: 487,
           },
           {
             Tahun: "2005",
             Jepang: 15151,
             "Korea Selatan": 5527,
+            Tiongkok: 2344,
           },
           {
             Tahun: "2006",
             Jepang: 14314,
             "Korea Selatan": 5245,
+            Tiongkok: 3447,
           },
           {
             Tahun: "2007",
             Jepang: 13907,
             "Korea Selatan": 4035,
+            Tiongkok: 3282,
           },
           {
             Tahun: "2008",
             Jepang: 14392,
             "Korea Selatan": 3373,
+            Tiongkok: 3010,
           },
           {
             Tahun: "2009",
             Jepang: 13058,
             "Korea Selatan": 3136,
+            Tiongkok: 2299,
           },
           {
             Tahun: "2010",
             Jepang: 13133,
             "Korea Selatan": 5652,
+            Tiongkok: 1884,
           },
           {
             Tahun: "2011",
             Jepang: 12826,
             "Korea Selatan": 9384,
+            Tiongkok: 2385,
           },
           {
             Tahun: "2012",
             Jepang: 7174,
             "Korea Selatan": 8515,
+            Tiongkok: 2249,
           },
           {
             Tahun: "2013",
             Jepang: 7355,
             "Korea Selatan": 6132,
+            Tiongkok: 2635,
           },
           {
             Tahun: "2014",
             Jepang: 5672,
             "Korea Selatan": 5466,
+            Tiongkok: 2572,
           },
           {
             Tahun: "2015",
             Jepang: 6337,
             "Korea Selatan": 3938,
+            Tiongkok: 2827,
           },
           {
             Tahun: "2016",
             Jepang: 6548,
             "Korea Selatan": 4439,
+            Tiongkok: 3009,
           },
           {
             Tahun: "2017",
             Jepang: 6606,
             "Korea Selatan": 4041,
+            Tiongkok: 2836,
           },
           {
             Tahun: "2018",
             Jepang: 5239,
             "Korea Selatan": 3459,
+            Tiongkok: 5129,
           },
           {
             Tahun: "2019",
             Jepang: 4147,
             "Korea Selatan": 2481,
+            Tiongkok: 4563,
           },
         ];
 
@@ -172,6 +192,21 @@
         series2.strokeWidth = 2;
         series2.fill = am4core.color("#FF9671");
 
+        var series3 = chart.series.push(new am4charts.LineSeries());
+        series3.name = "Tiongkok";
+        series3.dataFields.dateX = "Tahun";
+        series3.dataFields.valueY = "Tiongkok";
+        series3.tooltipText = "[#000]{valueY.value}[/]";
+        series3.tooltip.background.fill = am4core.color("#FFF");
+        series3.tooltip.getFillFromObject = false;
+        series3.tooltip.getStrokeFromObject = true;
+        series3.tooltip.background.strokeWidth = 3;
+        series3.sequencedInterpolation = true;
+        series3.fillOpacity = 0.6;
+        series3.stacked = true;
+        series3.strokeWidth = 2;
+        series3.fill = am4core.color("#F9F871");
+
         chart.cursor = new am4charts.XYCursor();
         chart.cursor.xAxis = dateAxis;
         chart.scrollbarX = new am4core.Scrollbar();
@@ -182,7 +217,7 @@
 
         var title = chart.titles.create();
         title.text =
-          "Ekspor gas Korea Selatan & Jepang periode 2000 - 2019 (Ton)";
+          "Ekspor gas Tiongkok, Korea Selatan & Jepang periode 2000 - 2019 (Ton)";
         title.fontSize = 25;
         title.marginBottom = 30;
       }); // end am4core.ready()
